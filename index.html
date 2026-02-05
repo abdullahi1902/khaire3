@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dalab Exchange</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-box">
+    <h2>Dalab Exchange</h2>
+    <h1>👤</h1>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button id="loginBtn" class="btn">Login</button>
+    <button id="registerBtn" class="btn register">Register</button>
+    <p id="loginError"></p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">Dalab Exchange</div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showSection('home')">Home</a></li>
+    <li><a href="#" onclick="showSection('about')">About</a></li>
+    <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+    <li><a href="#" id="adminLink" onclick="showSection('admin')" style="display:none;">Admin</a></li>
+    <li><a href="#" onclick="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN APP -->
+<main class="container">
+
+  <!-- HOME -->
+  <section id="home" class="content-section">
+    <div class="balance-card">
+      <h2 id="welcomeUser">Welcome</h2>
+      <h3>USD Balance: $ <span id="balanceUSD">0</span></h3>
+      <h3>EUR Balance: € <span id="balanceEUR">0</span></h3>
+
+      <!-- Admin-only deposit/withdraw -->
+      <div id="adminFinanceControls" style="display:none;">
+        <div class="deposit-box">
+          <input type="number" id="depositAmount" placeholder="Enter amount">
+          <select id="depositCurrency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+        <div class="deposit-box">
+          <button class="btn" id="depositBtn">Deposit</button>
+          <button class="btn withdraw" id="withdrawBtn">Withdraw</button>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Exchange -->
+      <div class="exchange-box">
+        <input type="number" id="exchangeAmount" placeholder="Amount to exchange">
+        <select id="fromCurrency">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
+        <span>💰</span>
+        <select id="toCurrency">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
+        <button class="btn" id="exchangeBtn">Exchange</button>
+      </div>
+      <p id="exchangeResult"></p>
+
+      <hr>
+
+      <!-- Send Money -->
+      <h3>Send Money</h3>
+      <div class="exchange-box">
+        <input type="text" id="transferUser" placeholder="Enter  Account ID A10000001">
+        <input type="number" id="transferAmount" placeholder="Amount">
+        <select id="transferCurrency">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
+        <button class="btn" id="transferBtn">Send</button>
+      </div>
+
+      <h3>Transaction History</h3>
+      <button class="btn clear-btn" id="clearHistoryBtn">Clear History</button>
+      <div id="transaction-list"></div>
+    </div>
+  </section>
+
+  <!-- ADMIN -->
+  <section id="admin" class="content-section" style="display:none;">
+    <h2>Admin Dashboard</h2>
+    <table border="1" width="100%" style="border-collapse: collapse; text-align: left;">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Account ID</th>
+          <th>USD Balance</th>
+          <th>EUR Balance</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="adminTableBody"></tbody>
+    </table>
+    <p id="systemTotals" style="font-weight:bold;"></p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="content-section" style="display:none;">
+    <h2>About Us</h2>
+    <p>Dalab Exchange helps you manage balances, exchange currencies, and send money to other users using Account IDs.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="content-section" style="display:none;">
+    <h2>Contact</h2>
+    <p>Email: support@dalabexchange.com</p>
+  </section>
+
+</main>
+
+<script src="java.js"></script>
+</body>
+</html>
